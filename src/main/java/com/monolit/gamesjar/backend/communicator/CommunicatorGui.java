@@ -2,7 +2,9 @@ package com.monolit.gamesjar.backend.communicator;
 
 import com.monolit.gamesjar.backend.communicator.service.DialogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CommunicatorGui {
     @Autowired
     private DialogService dialogService;

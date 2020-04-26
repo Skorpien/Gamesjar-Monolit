@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.monolit.gamesjar.views.communicator.CommunicatorView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -53,6 +54,7 @@ public class MainView extends AppLayout {
         final List<Tab> tabs = new ArrayList<>();
         tabs.add(createTab("Room", RoomView.class));
         tabs.add(createTab("User", UserView.class));
+        tabs.add(createTab("Communicator", CommunicatorView.class));
         return tabs.toArray(new Tab[tabs.size()]);
     }
 

@@ -45,7 +45,7 @@ public class History implements Observable {
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyObservers() throws Exception {
         for(Observer observer : observers) {
             observer.update(this);
         }
@@ -56,7 +56,7 @@ public class History implements Observable {
         observers.remove(observer);
     }
 
-    public void setHistory(String history) {
+    public void setHistory(String history) throws Exception {
         this.history = history;
         notifyObservers();
     }

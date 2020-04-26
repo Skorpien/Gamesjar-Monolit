@@ -52,8 +52,7 @@ public class User implements Observer {
     }
 
     @Override
-    public String update(History history) {
+    public void update(History history) {
         message = "There is new message in " + history.getRoom().getName() + " room";
-        return message;
     }
 }

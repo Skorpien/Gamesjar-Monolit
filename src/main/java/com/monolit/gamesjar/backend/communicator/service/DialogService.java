@@ -20,8 +20,8 @@ public class DialogService {
                 HttpMethod.PUT,
                 HttpEntity.EMPTY,
                 String.class);*/
-        Optional<History> message = communicatorRepository.findById(historyId);
-        message.get().setHistory(message.get().getHistory() + infoToSent + System.lineSeparator());
-        return communicatorRepository.save(message.orElseThrow(Exception::new));
+        History message = communicatorRepository.findById(historyId).orElseThrow(Exception::new);
+        message.setHistory(message.getHistory() + infoToSent + System.lineSeparator());
+        return communicatorRepository.save(message);
     }
 }

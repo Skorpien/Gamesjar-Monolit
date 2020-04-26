@@ -138,10 +138,16 @@
             <artifactId>google-api-client</artifactId>
             <version>1.30.9</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.19</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.12</version>
         </dependency>
 
         <dependency>
@@ -268,7 +274,7 @@
                         <configuration>
                             <appName>gamesjar</appName>
                             <processTypes>
-                                <web>java $JAVA_OPTS -jar target/gamesjar-2.0-SNAPSHOT.jar --server.port=$PORT</web>
+                                <web>java $JAVA_OPTS -jar target/gamesjar-monolit-1.0-SNAPSHOT.jar --server.port=$PORT</web>
                             </processTypes>
                         </configuration>
                     </plugin>
