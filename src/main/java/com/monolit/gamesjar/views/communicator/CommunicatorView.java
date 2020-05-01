@@ -35,8 +35,8 @@ public class CommunicatorView extends Div implements AfterNavigationObserver, Ob
         this.communicatorGui = communicatorGui;
         this.historyService = historyService;
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        horizontalLayout.add(messages,name, textField, send, clear);
-        add(horizontalLayout);
+        horizontalLayout.add(messages,name, textField, send);
+        add(horizontalLayout, clear);
         addObserver();
         send.addClickListener(event ->
         {
