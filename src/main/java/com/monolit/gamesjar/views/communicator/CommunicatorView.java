@@ -6,6 +6,7 @@ import com.monolit.gamesjar.backend.communicator.service.DialogService;
 import com.monolit.gamesjar.backend.communicator.service.HistoryService;
 import com.monolit.gamesjar.backend.observer.Observer;
 import com.monolit.gamesjar.views.main.MainView;
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Route(value = "communicator", layout = MainView.class)
-@RouteAlias(value = "Communicator", layout = MainView.class)
+@RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Communicator")
 public class CommunicatorView extends Div implements AfterNavigationObserver, Observer {
 
@@ -37,7 +38,8 @@ public class CommunicatorView extends Div implements AfterNavigationObserver, Ob
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.add(messages,name, textField, send);
         add(horizontalLayout, clear);
-        addObserver();
+        send.addClickShortcut(Key.ENTER);
+      //  addObserver();
         send.addClickListener(event ->
         {
             try {
@@ -50,7 +52,7 @@ public class CommunicatorView extends Div implements AfterNavigationObserver, Ob
         clear.addClickListener(event ->
         {
             try {
-                clearHistory();
+                clearHistory(2L);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -72,6 +74,7 @@ public class CommunicatorView extends Div implements AfterNavigationObserver, Ob
     public void sendMessage() throws Exception {
         communicatorGui.sentMessage(2L, name.getValue(), textField.getValue());
         messages.setValue(historyService.getHistory(2L).getHistory());
+        textField.clear();
     }
 
 
@@ -93,7 +96,7 @@ public class CommunicatorView extends Div implements AfterNavigationObserver, Ob
         messages.setValue(history.getHistory());
     }
 
-    public void clearHistory() throws Exception {
-        historyService.getHistory(2L).setHistory("");
+    public void clearHistory(Long historyId) throws Exception {
+        communicatorGui.clearHistory(historyId);
     }
 }

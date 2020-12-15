@@ -13,4 +13,7 @@ public class CommunicatorGui {
             dialogService.sentMessage(id,userName + ": " + message);
     }
 
+    public void clearHistory(Long historyId) throws Exception {
+        dialogService.clearHistory(historyId);
+    }
 }

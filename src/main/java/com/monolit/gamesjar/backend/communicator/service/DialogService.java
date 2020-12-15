@@ -5,15 +5,13 @@ import com.monolit.gamesjar.backend.communicator.repository.CommunicatorReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class DialogService {
 
     @Autowired
     private CommunicatorRepository communicatorRepository;
 
-    public History sentMessage(Long historyId, String infoToSent) throws Exception {
+    public void sentMessage(Long historyId, String infoToSent) throws Exception {
         /*RestTemplate rest = new RestTemplate();
         rest.exchange(
                 String.format("http://localhost:8083/v1/gamesjar/history/%s?text=%s", historyId, infoToSent),
@@ -22,6 +20,12 @@ public class DialogService {
                 String.class);*/
         History message = communicatorRepository.findById(historyId).orElseThrow(Exception::new);
         message.setHistory(message.getHistory() + infoToSent + System.lineSeparator());
-        return communicatorRepository.save(message);
+        communicatorRepository.save(message);
+    }
+
+    public void clearHistory(Long historyId) throws Exception {
+        History message = communicatorRepository.findById(historyId).orElseThrow(Exception::new);
+        message.setHistory("");
+        communicatorRepository.save(message);
     }
 }

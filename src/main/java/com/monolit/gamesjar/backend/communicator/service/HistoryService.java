@@ -34,4 +34,9 @@ public class HistoryService {
     public void deleteHistory(final Long historyId) {
         communicatorRepository.deleteById(historyId);
     }
+
+    public void clearHistory(final Long historyId) throws Exception {
+        History clear = communicatorRepository.findById(historyId).orElseThrow(Exception::new);
+        clear.setHistory("");
+    }
 }

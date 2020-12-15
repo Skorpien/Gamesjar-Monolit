@@ -1,6 +1,8 @@
 package com.monolit.gamesjar.views.user;
 
 import com.monolit.gamesjar.backend.Employee;
+import com.monolit.gamesjar.backend.domain.User;
+import com.monolit.gamesjar.backend.service.DbService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -18,21 +20,25 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.monolit.gamesjar.views.main.MainView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "user", layout = MainView.class)
 @PageTitle("User")
 @CssImport("styles/views/user/user-view.css")
 public class UserView extends Div {
 
-    private TextField firstname = new TextField();
-    private TextField lastname = new TextField();
+    private TextField name = new TextField();
     private TextField email = new TextField();
     private TextArea notes = new TextArea();
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    public UserView() {
+    private DbService service;
+
+    @Autowired
+    public UserView(DbService service) {
+        this.service = service;
         setId("user-view");
         VerticalLayout wrapper = createWrapper();
 
@@ -68,8 +74,7 @@ public class UserView extends Div {
 
     private void createFormLayout(VerticalLayout wrapper) {
         FormLayout formLayout = new FormLayout();
-        addFormItem(wrapper, formLayout, firstname, "First name");
-        addFormItem(wrapper, formLayout, lastname, "Last name");
+        addFormItem(wrapper, formLayout, name, "name");
         FormLayout.FormItem emailFormItem = addFormItem(wrapper, formLayout,
                 email, "Email");
         formLayout.setColspan(emailFormItem, 2);
@@ -99,4 +104,7 @@ public class UserView extends Div {
         return formItem;
     }
 
+    public void saveUser(String name) {
+        service.saveUser(new User(name, ""));
+    }
 }

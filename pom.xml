@@ -3,7 +3,7 @@
     <groupId>com.monolit.gamesjar</groupId>
     <artifactId>gamesjar-monolit</artifactId>
     <name>Gamesjar-Monolit</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -138,22 +138,22 @@
             <artifactId>google-api-client</artifactId>
             <version>1.30.9</version>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-login-flow</artifactId>
+        </dependency>
 <!--        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.19</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.12</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -274,7 +274,7 @@
                         <configuration>
                             <appName>gamesjar</appName>
                             <processTypes>
-                                <web>java $JAVA_OPTS -jar target/gamesjar-monolit-1.0-SNAPSHOT.jar --server.port=$PORT</web>
+                                <web>java $JAVA_OPTS -jar target/gamesjar-monolit-2.0-SNAPSHOT.jar --server.port=$PORT</web>
                             </processTypes>
                         </configuration>
                     </plugin>
@@ -322,17 +322,17 @@
                         <configuration>
                             <trimStackTrace>false</trimStackTrace>
                             <enableAssertions>true</enableAssertions>
-                            <systemPropertyVariables>
-                                <!-- Pass location of downloaded webdrivers to the tests -->
+                           <!-- <systemPropertyVariables>
+                                &lt;!&ndash; Pass location of downloaded webdrivers to the tests &ndash;&gt;
                                 <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
                             </systemPropertyVariables>
                             <processTypes>
                                 <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
-                            </processTypes>
+                            </processTypes>-->
                         </configuration>
                     </plugin>
 
-                    <plugin>
+                   <!-- <plugin>
                         <groupId>com.lazerycode.selenium</groupId>
                         <artifactId>driver-binary-downloader-maven-plugin</artifactId>
                         <version>1.0.17</version>
@@ -351,14 +351,14 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <!-- use phase "none" to skip download step -->
+                                &lt;!&ndash; use phase "none" to skip download step &ndash;&gt;
                                 <phase>${drivers.downloader.phase}</phase>
                                 <goals>
                                     <goal>selenium</goal>
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin>-->
                 </plugins>
             </build>
         </profile>

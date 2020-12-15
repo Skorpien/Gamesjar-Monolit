@@ -58,6 +58,6 @@ public class History implements Observable {
 
     public void setHistory(String history) throws Exception {
         this.history = history;
-        notifyObservers();
+      //  notifyObservers();
     }
 }
